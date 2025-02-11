@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+
 :root {
   /* Layout */
   --mobile-width: 375px;
@@ -53,4 +55,10 @@
   --font-size-numbers: 32px;
   --font-family: "League Spartan", sans-serif;
   --font-weight: 700;
+}
+* {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

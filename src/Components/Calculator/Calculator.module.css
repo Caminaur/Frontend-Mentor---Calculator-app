@@ -1,2 +1,259 @@
-.calculator {
+:root {
+  /* Layout */
+  --mobile-width: 375px;
+  --desktop-width: 1440px;
+
+  /* Theme 1 */
+  --theme1-main-bg: hsl(222, 26%, 31%);
+  --theme1-toggle-keypad-bg: hsl(223, 31%, 20%);
+  --theme1-screen-bg: hsl(224, 36%, 15%);
+
+  --theme1-key-bg: hsl(225, 21%, 49%);
+  --theme1-key-shadow: hsl(224, 28%, 35%);
+  --theme1-key-accent: hsl(6, 63%, 50%);
+  --theme1-key-accent-shadow: hsl(6, 70%, 34%);
+  --theme1-key-secondary: hsl(30, 25%, 89%);
+  --theme1-key-secondary-shadow: hsl(28, 16%, 65%);
+
+  --theme1-text-primary: hsl(221, 14%, 31%);
+  --theme1-text-secondary: hsl(0, 0%, 100%);
+
+  /* Theme 2 */
+  --theme2-main-bg: hsl(0, 0%, 90%);
+  --theme2-toggle-keypad-bg: hsl(0, 5%, 81%);
+  --theme2-screen-bg: hsl(0, 0%, 93%);
+
+  --theme2-key-bg: hsl(185, 42%, 37%);
+  --theme2-key-shadow: hsl(185, 58%, 25%);
+  --theme2-key-accent: hsl(25, 98%, 40%);
+  --theme2-key-accent-shadow: hsl(25, 99%, 27%);
+  --theme2-key-secondary: hsl(45, 7%, 89%);
+  --theme2-key-secondary-shadow: hsl(35, 11%, 61%);
+
+  --theme2-text-primary: hsl(60, 10%, 19%);
+  --theme2-text-secondary: hsl(0, 0%, 100%);
+
+  /* Theme 3 */
+  --theme3-main-bg: hsl(268, 75%, 9%);
+  --theme3-toggle-keypad-bg: hsl(268, 71%, 12%);
+  --theme3-screen-bg: hsl(268, 71%, 12%);
+
+  --theme3-key-bg: hsl(281, 89%, 26%);
+  --theme3-key-shadow: hsl(285, 91%, 52%);
+  --theme3-key-accent: hsl(176, 100%, 44%);
+  --theme3-key-accent-shadow: hsl(177, 92%, 70%);
+  --theme3-key-secondary: hsl(268, 47%, 21%);
+  --theme3-key-secondary-shadow: hsl(290, 70%, 36%);
+
+  --theme3-text-primary: hsl(52, 100%, 62%);
+  --theme3-text-secondary: hsl(198, 20%, 13%);
+  --theme3-text-tertiary: hsl(0, 0%, 100%);
+
+  /* Typography */
+  --font-size-numbers-input: 52px;
+  --font-size-numbers: 32px;
+  --font-family: "League Spartan", sans-serif;
+  --font-weight: 700;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--theme1-main-bg);
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+
+  width: 450px;
+  height: 680px;
+  color: var(--theme1-text-secondary);
+}
+
+.firstRow {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 5px;
+  margin-bottom: 1rem;
+}
+
+.firstRow .title {
+  font-size: 22px;
+  font-weight: var(--font-weight);
+}
+
+.firstRow .themeSelector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.firstRow .themeSelector p {
+  font-size: 13px;
+  font-weight: var(--font-weight);
+  text-transform: uppercase;
+}
+
+.firstRow .themeSelector .switcher .positions {
+  width: 60px;
+  height: 15px;
+  position: relative;
+  border-radius: 12px;
+  margin-bottom: 0.2rem;
+}
+
+.firstRow .themeSelector .switcher .positions span {
+  position: absolute;
+}
+
+.firstRow .themeSelector .switcher .positions span:nth-child(1) {
+  left: 7px;
+}
+.firstRow .themeSelector .switcher .positions span:nth-child(2) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.firstRow .themeSelector .switcher .positions span:nth-child(3) {
+  right: 7px;
+}
+
+.firstRow .themeSelector .switcher .button {
+  width: 60px;
+  height: 25px;
+  border-radius: 12px;
+  background-color: var(--theme1-toggle-keypad-bg);
+  position: relative;
+  cursor: pointer;
+}
+.firstRow .themeSelector .switcher .button span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--theme1-key-accent);
+  transition: transform 0.3s, background-color 0.3s, left 0.3s, right 0.3s;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+  cursor: pointer;
+}
+
+.firstRow .themeSelector .switcher .button span:hover {
+  filter: brightness(1.4);
+}
+
+.firstRow .themeSelector .switcher[data-state="1"] .button span {
+  left: 5px;
+}
+
+.firstRow .themeSelector .switcher[data-state="2"] .button span {
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.firstRow .themeSelector .switcher[data-state="3"] .button span {
+  left: calc(100% - 16px - 5px);
+  transform: translateY(-50%);
+}
+
+/* section 2 */
+
+.results {
+  width: 100%;
+  flex-basis: 120px;
+  align-content: center;
+  flex-grow: 2;
+  background-color: var(--theme1-screen-bg);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+}
+
+.results span {
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  font-weight: var(--font-weight);
+  color: var(--theme1-text-secondary);
+  font-size: var(--font-size-numbers-input);
+  text-align: right;
+  padding: 0 1.5rem;
+  margin-top: 10px;
+}
+/* section 2 */
+
+/* section 3 */
+.buttons {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  height: fit-content;
+  width: 100%;
+  border-radius: 15px;
+  gap: 1.5rem;
+  background-color: var(--theme1-toggle-keypad-bg);
+  padding: 2rem;
+}
+
+.buttons button:nth-last-child(2) {
+  grid-column: span 2;
+  padding: calc(0.7rem + 5px) 0 0.7rem 0;
+}
+
+.buttons button:last-child {
+  grid-column: span 2;
+  padding: calc(0.7rem + 5px) 0 0.7rem 0;
+}
+
+.buttons button {
+  margin: 0.2rem 0;
+  border: none;
+  padding-top: 5px;
+  border-radius: 7px;
+  font-size: var(--font-size-numbers);
+  background-color: var(--theme1-key-secondary);
+  box-shadow: 0px 3px var(--theme1-key-secondary-shadow);
+  color: var(--theme1-text-primary);
+  font-weight: var(--font-weight);
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: var(--theme1-text-secondary);
+}
+
+.buttons .delete,
+.buttons .reset {
+  color: var(--theme1-text-secondary);
+  background-color: var(--theme1-key-bg);
+  box-shadow: 0px 3px var(--theme1-key-shadow);
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
+.buttons .delete:hover,
+.buttons .reset:hover {
+  background-color: var(--theme1-key-bg);
+  filter: brightness(1.2);
+}
+
+.buttons .equal {
+  color: var(--theme1-text-secondary);
+  background-color: var(--theme1-key-accent);
+  box-shadow: 0px 3px var(--theme1-key-accent-shadow);
+}
+
+.buttons .equal:hover {
+  background-color: var(--theme1-key-accent);
+  filter: brightness(1.2);
+}
+/* section 3 */
