@@ -5,57 +5,75 @@
   --mobile-width: 375px;
   --desktop-width: 1440px;
 
-  /* Theme 1 */
-  --theme1-main-bg: hsl(222, 26%, 31%);
-  --theme1-toggle-keypad-bg: hsl(223, 31%, 20%);
-  --theme1-screen-bg: hsl(224, 36%, 15%);
-
-  --theme1-key-bg: hsl(225, 21%, 49%);
-  --theme1-key-shadow: hsl(224, 28%, 35%);
-  --theme1-key-accent: hsl(6, 63%, 50%);
-  --theme1-key-accent-shadow: hsl(6, 70%, 34%);
-  --theme1-key-secondary: hsl(30, 25%, 89%);
-  --theme1-key-secondary-shadow: hsl(28, 16%, 65%);
-
-  --theme1-text-primary: hsl(221, 14%, 31%);
-  --theme1-text-secondary: hsl(0, 0%, 100%);
-
-  /* Theme 2 */
-  --theme2-main-bg: hsl(0, 0%, 90%);
-  --theme2-toggle-keypad-bg: hsl(0, 5%, 81%);
-  --theme2-screen-bg: hsl(0, 0%, 93%);
-
-  --theme2-key-bg: hsl(185, 42%, 37%);
-  --theme2-key-shadow: hsl(185, 58%, 25%);
-  --theme2-key-accent: hsl(25, 98%, 40%);
-  --theme2-key-accent-shadow: hsl(25, 99%, 27%);
-  --theme2-key-secondary: hsl(45, 7%, 89%);
-  --theme2-key-secondary-shadow: hsl(35, 11%, 61%);
-
-  --theme2-text-primary: hsl(60, 10%, 19%);
-  --theme2-text-secondary: hsl(0, 0%, 100%);
-
-  /* Theme 3 */
-  --theme3-main-bg: hsl(268, 75%, 9%);
-  --theme3-toggle-keypad-bg: hsl(268, 71%, 12%);
-  --theme3-screen-bg: hsl(268, 71%, 12%);
-
-  --theme3-key-bg: hsl(281, 89%, 26%);
-  --theme3-key-shadow: hsl(285, 91%, 52%);
-  --theme3-key-accent: hsl(176, 100%, 44%);
-  --theme3-key-accent-shadow: hsl(177, 92%, 70%);
-  --theme3-key-secondary: hsl(268, 47%, 21%);
-  --theme3-key-secondary-shadow: hsl(290, 70%, 36%);
-
-  --theme3-text-primary: hsl(52, 100%, 62%);
-  --theme3-text-secondary: hsl(198, 20%, 13%);
-  --theme3-text-tertiary: hsl(0, 0%, 100%);
-
   /* Typography */
+  --font-size-numbers-input: 52px;
   --font-size-numbers: 32px;
   --font-family: "League Spartan", sans-serif;
   --font-weight: 700;
 }
+.theme1 {
+  --main-bg: hsl(222, 26%, 31%);
+  --toggle-keypad-bg: hsl(223, 31%, 20%);
+  --screen-bg: hsl(224, 36%, 15%);
+  --key-bg: hsl(225, 21%, 49%);
+  --key-shadow: hsl(224, 28%, 35%);
+  --key-accent: hsl(6, 63%, 50%);
+  --key-accent-shadow: hsl(6, 70%, 34%);
+  --key-secondary: hsl(30, 25%, 89%);
+  --key-secondary-shadow: hsl(28, 16%, 65%);
+  --text-primary: hsl(221, 14%, 31%);
+  --text-secondary: hsl(0, 0%, 100%);
+
+  --top-text: var(--text-secondary);
+  --result-text: var(--text-secondary);
+  --action-btn-text: var(--text-secondary);
+  --numbers-and-operators-text: var(--text-primary);
+  --numbers-and-operators-text-hover: var(--text-secondary);
+  --equal-text: var(--text-secondary);
+}
+
+.theme2 {
+  --main-bg: hsl(0, 0%, 90%);
+  --toggle-keypad-bg: hsl(0, 5%, 81%);
+  --screen-bg: hsl(0, 0%, 93%);
+  --key-bg: hsl(185, 42%, 37%);
+  --key-shadow: hsl(185, 58%, 25%);
+  --key-accent: hsl(25, 98%, 40%);
+  --key-accent-shadow: hsl(25, 99%, 27%);
+  --key-secondary: hsl(45, 7%, 89%);
+  --key-secondary-shadow: hsl(35, 11%, 61%);
+  --text-primary: hsl(60, 10%, 19%);
+  --text-secondary: hsl(0, 0%, 100%);
+
+  --top-text: var(--text-primary);
+  --result-text: var(--text-primary);
+  --action-btn-text: var(--text-secondary);
+  --numbers-and-operators-text: var(--text-primary);
+  --numbers-and-operators-text-hover: var(--text-secondary);
+  --equal-text: var(--text-secondary);
+}
+
+.theme3 {
+  --main-bg: hsl(268, 75%, 9%);
+  --toggle-keypad-bg: hsl(268, 71%, 12%);
+  --screen-bg: hsl(268, 71%, 12%);
+  --key-bg: hsl(281, 89%, 26%);
+  --key-shadow: hsl(285, 91%, 52%);
+  --key-accent: hsl(176, 100%, 44%);
+  --key-accent-shadow: hsl(177, 92%, 70%);
+  --key-secondary: hsl(268, 47%, 21%);
+  --key-secondary-shadow: hsl(290, 70%, 36%);
+  --text-primary: hsl(52, 100%, 62%);
+  --text-secondary: hsl(198, 20%, 13%);
+
+  --top-text: var(--text-primary);
+  --result-text: var(--text-primary);
+  --action-btn-text: hsl(0, 0%, 90%);
+  --numbers-and-operators-text-hover: hsl(267.5, 53.57%, 43.92%);
+  --numbers-and-operators-text: var(--text-primary);
+  --equal-text: var(--text-secondary);
+}
+
 * {
   font-family: var(--font-family);
   margin: 0;
