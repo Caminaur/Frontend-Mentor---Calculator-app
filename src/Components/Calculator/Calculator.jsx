@@ -9,10 +9,16 @@ function Calculator() {
   const [displayedResult, setDisplayedResult] = useState("0");
   const [previousResult, setPreviousResult] = useState(null);
   const [justCalculated, setJustCalculated] = useState(false);
+  const [isReset, setIsReset] = useState(false);
 
   function handleSwitcherChange() {
     const newState = (switcherState % 3) + 1;
     setSwitcherState(newState);
+  }
+
+  function formatDisplayResult(number) {
+    const formattedResult = new Intl.NumberFormat().format(parseFloat(number));
+    setDisplayedResult(formattedResult);
   }
 
   const handleKeyDown = useCallback(
@@ -41,34 +47,50 @@ function Calculator() {
   );
 
   function handleNumberOrDotAddition(number) {
-    // aqui hay un problema al ingresar el segundo numero
-    if (displayedResult === "0" || justCalculated) {
+    if (isReset && number !== ".") {
       setResult(number);
-      setDisplayedResult(number);
+      formatDisplayResult(number);
+      setIsReset(false);
+      return;
+    }
+    // aqui hay un problema al ingresar el segundo numero
+    if (result === "0" || justCalculated) {
+      const newResult = number === "." ? "0." : number;
+      setResult(() => number);
+      formatDisplayResult(newResult);
       setJustCalculated(false);
       return;
     }
-
     if (result.length > 12) return;
     if (justCalculated) {
       // overwrite
-      setResult(number);
+      setResult(() => number);
       setDisplayedResult(number);
       setJustCalculated(false);
     } else {
       // append
       let r = result === "0" ? number : result + number;
-      setResult(r);
+      setResult(() => r);
       setDisplayedResult(r);
     }
   }
 
   function handleEqual() {
-    let calcResult = 0;
+    if (!currentOperator) return;
+
     const currentValue = parseFloat(result);
     const prevValue = parseFloat(previousResult) || 0; // Asegura que no sea null
+    let calcResult;
 
-    if (!currentOperator) return;
+    // 🚨 Check for division by zero
+    if (currentOperator === "/" && currentValue === 0) {
+      setResult("Error");
+      setDisplayedResult("Cannot divide by 0");
+      setPreviousResult(null);
+      setCurrentOperator(null);
+      setJustCalculated(true);
+      return;
+    }
 
     switch (currentOperator) {
       case "+":
@@ -87,11 +109,24 @@ function Calculator() {
         return;
     }
 
-    setResult(() => calcResult.toString());
-    setDisplayedResult(() => calcResult.toString());
-    setPreviousResult(null);
-    setCurrentOperator(null);
-    setJustCalculated(true);
+    if (
+      !isNaN(calcResult) &&
+      calcResult !== Infinity &&
+      calcResult !== -Infinity
+    ) {
+      setResult(calcResult.toString());
+      formatDisplayResult(calcResult.toString());
+      setPreviousResult(null);
+      setCurrentOperator(null);
+      setJustCalculated(true);
+      return;
+    } else {
+      setResult("Error");
+      setDisplayedResult("That calculation is not possible! :(");
+    }
+
+    // Ensure the next operation is ready
+    setJustCalculated(false);
   }
 
   function handleOperator(operator) {
@@ -102,6 +137,7 @@ function Calculator() {
       setResult("0");
       setDisplayedResult(operator);
       setCurrentOperator(operator);
+      setJustCalculated(false);
     }
   }
 
@@ -127,17 +163,19 @@ function Calculator() {
   function handleDeletion() {
     if (result.length === 1) {
       setResult("0");
-      setDisplayedResult("0");
+      formatDisplayResult("0");
     }
     setResult(result.slice(0, -1));
-    setDisplayedResult(result.slice(0, -1));
+    formatDisplayResult(result.slice(0, -1));
   }
+
   function handleReset() {
     setResult(() => "0");
-    setDisplayedResult(() => "0");
+    formatDisplayResult("0");
     setPreviousResult(() => null);
     setCurrentOperator(() => null);
     setJustCalculated(() => false);
+    setIsReset(true);
   }
 
   return (
@@ -212,14 +250,18 @@ function Calculator() {
           <button
             className={styles.action}
             onClick={() => {
-              handleOperator("x");
+              handleOperator("*");
             }}
           >
             x
           </button>
           <button
             className={`${styles.action} ${styles.reset}`}
-            onClick={handleReset}
+            onClick={() => {
+              // Necesary to remove the focus from the reset button
+              document.activeElement.blur();
+              handleReset();
+            }}
           >
             Reset
           </button>
