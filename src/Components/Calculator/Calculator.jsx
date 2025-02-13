@@ -14,6 +14,7 @@ function Calculator() {
   function handleSwitcherChange() {
     const newState = (switcherState % 3) + 1;
     setSwitcherState(newState);
+    localStorage.setItem("theme", newState);
   }
 
   function formatDisplayResult(number) {
@@ -157,7 +158,9 @@ function Calculator() {
   }, [switcherState]);
 
   useEffect(() => {
-    document.getElementById("container").classList.add(`theme${switcherState}`);
+    let theme = localStorage.getItem("theme");
+    setSwitcherState(() => theme);
+    document.getElementById("container").classList.add(`theme${theme}`);
   }, []);
 
   function handleDeletion() {
