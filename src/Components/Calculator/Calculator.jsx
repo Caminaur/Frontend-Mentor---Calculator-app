@@ -158,7 +158,24 @@ function Calculator() {
   }, [switcherState]);
 
   useEffect(() => {
-    let theme = localStorage.getItem("theme");
+    let theme;
+
+    let storedTheme = localStorage.getItem("theme");
+
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (storedTheme) {
+      theme = storedTheme;
+    } else {
+      if (systemPrefersDark) {
+        theme = 1;
+      } else {
+        theme = 2;
+      }
+    }
+
     setSwitcherState(() => theme);
     document.getElementById("container").classList.add(`theme${theme}`);
   }, []);
