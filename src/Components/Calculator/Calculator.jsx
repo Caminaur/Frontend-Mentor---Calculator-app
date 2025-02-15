@@ -293,6 +293,21 @@ function Calculator() {
           </button>
         </div>
       </div>
+      <div class={styles.attribution}>
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29"
+          target="_blank"
+        >
+          {" "}
+          Frontend Mentor
+        </a>{" "}
+        - Coded by
+        <a href="https://github.com/Caminaur/Frontend-Mentor---Calculator-app">
+          {" "}
+          Julian Caminaur
+        </a>
+      </div>
     </div>
   );
 }

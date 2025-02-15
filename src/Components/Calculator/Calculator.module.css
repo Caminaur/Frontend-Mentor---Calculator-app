@@ -201,6 +201,19 @@
 }
 /* section 3 */
 
+.attribution {
+  position: absolute;
+  bottom: 2rem;
+  padding: 0 2rem;
+  color: var(--top-text);
+  font-weight: var(--font-weight);
+}
+
+.attribution a {
+  text-decoration: none;
+  color: dodgerblue;
+}
+
 @media (max-width: 480px) {
   .results {
     flex-grow: unset;
